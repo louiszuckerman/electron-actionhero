@@ -2,5 +2,5 @@ node_modules
 /dist
 .idea
 npm-debug.log
-actionhero/log/
-actionhero/pids/
+actionhero/log/actionhero*
+actionhero/pids/actionhero*
