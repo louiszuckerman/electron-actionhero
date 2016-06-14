@@ -36,4 +36,4 @@ Builds the app for macOS, Linux, and Windows, using [electron-packager](https://
 
 ## License
 
-MIT © [<%= name %>](<%= website %>)
+MIT © [Louis Zuckerman](http://github.com/semiosis)
