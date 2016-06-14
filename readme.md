@@ -10,7 +10,7 @@ Here's what we have so far:
 - Added some lines to `index.js` to boot up actionhero looking in the `actionhero` directory for its configuration
 - Pointed the main window at `actionhero/public/chat.html`
 - Edited the resource paths in `chat.html` to be relative to that file
-- Changed the default server address in `actionhero/public/javascript/actionheroClient.js` (line 3240) to be `http://localhost:8080` instead of `window.location.origin`
+- Set the hostname for Actionhero server to `http://localhost:8080` in `chat.html`
 - Set the main window size to 800x600
 
 ## Dev

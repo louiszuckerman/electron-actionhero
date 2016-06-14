@@ -3237,7 +3237,7 @@ if(typeof Primus === 'undefined'){
 }
 
 ActionheroClient.prototype.defaults = function(){
-  return { apiPath: '/api', url: 'http://localhost:8080' }
+  return { apiPath: '/api', url: window.location.origin }
 }
 
 ////////////////
