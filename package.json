@@ -1,14 +1,14 @@
 {
-  "name": "app",
-  "productName": "App",
-  "version": "0.0.0",
-  "description": "",
+  "name": "electron-actionhero",
+  "productName": "ElectronActionhero",
+  "version": "0.0.1",
+  "description": "Bundling Actionhero with Electron",
   "license": "MIT",
-  "repository": "user/repo",
+  "repository": "semiosis/electron-actionhero",
   "author": {
-    "name": "",
-    "email": "",
-    "url": ""
+    "name": "Louis Zuckerman",
+    "email": "code@louiszuckerman.com",
+    "url": "http://github.com/semiosis"
   },
   "scripts": {
     "test": "xo",
