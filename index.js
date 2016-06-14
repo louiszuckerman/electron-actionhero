@@ -12,7 +12,6 @@ var path = require('path');
 var actionheroPrototype = require('actionhero').actionheroPrototype;
 var actionhero = new actionheroPrototype();
 process.env.PROJECT_ROOT = path.join(__dirname, 'actionhero');
-console.log(process.env.PROJECT_ROOT);
 actionhero.start({}, function(error, api) {console.log("ACTIONHERO RUNNING!")});
 
 function onClosed() {
