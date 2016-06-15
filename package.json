@@ -13,7 +13,8 @@
   "scripts": {
     "test": "xo",
     "start": "electron .",
-    "build": "electron-packager . --out=dist --app-version=$npm_package_version --prune --asar --overwrite --all"
+    "build": "electron-packager . --out=dist --app-version=$npm_package_version --platform=darwin --arch=x64 --prune --overwrite",
+    "build-asar": "electron-packager . --out=dist --app-version=$npm_package_version --platform=darwin --arch=x64 --asar --prune --overwrite"
   },
   "files": [
     "index.js",
@@ -27,6 +28,7 @@
   "dependencies": {
     "actionhero": "^13.4.2",
     "electron-debug": "^1.0.0",
+    "fs-extra": "^0.30.0",
     "ws": "^1.1.0"
   },
   "devDependencies": {
