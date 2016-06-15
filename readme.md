@@ -16,9 +16,14 @@ Here's what we have so far:
 
 Issues:
 
-- Actionhero doesn't work when using ASAR packaging for two reasons
-    - [Bug in electron](https://github.com/electron/electron/issues/5454) when actionhero lists files in an ASAR subdirectory with a trailing separator.  Example: /foo/app.asar/bar/, electron produces a listing of /foo/app.asar
-    - Actionhero loads default config first, and tries to open read-only files for writing (logs, pids, etc) even when told to use config from a different, writable location.
+Actionhero doesn't work when using ASAR packaging for two reasons
+- [Bug in electron](https://github.com/electron/electron/issues/5454) when actionhero lists files in an ASAR
+subdirectory with a trailing separator.  Example: /foo/app.asar/bar/, electron produces a listing of /foo/app.asar
+https://github.com/evantahler/actionhero/pull/870
+- Actionhero tries to create its log directory during config loading.  It loads its default config first, and tries
+to create a log directory there, even if that's not where the log will ultimately be written.  If Actionhero is
+installed on a read-only filesystem, like an ASAR, this causes a crash.
+https://github.com/evantahler/actionhero/pull/871
 
 I'm working with the Actionhero community to resolve these issues.
 
