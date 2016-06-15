@@ -54,8 +54,9 @@ $ npm run build-asar
 ```
 
 
-Builds the app for macOS, Linux, and Windows, using [electron-packager](https://github.com/electron-userland/electron-packager).
+Builds the app for macOS-x64, using [electron-packager](https://github.com/electron-userland/electron-packager).
 
+Will expand support for Windows & Linux soon.
 
 ## License
 
