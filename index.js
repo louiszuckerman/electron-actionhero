@@ -9,9 +9,12 @@ require('electron-debug')();
 let mainWindow;
 
 var path = require('path');
+
+process.env.PROJECT_ROOT = extractActionhero();
+console.log('project root: ' + process.env.PROJECT_ROOT);
+
 var actionheroPrototype = require('actionhero').actionheroPrototype;
 var actionhero = new actionheroPrototype();
-process.env.PROJECT_ROOT = path.join(__dirname, 'actionhero');
 actionhero.start({}, function(error, api) {console.log("ACTIONHERO RUNNING!")});
 
 function onClosed() {
@@ -26,7 +29,7 @@ function createMainWindow() {
 		height: 600
 	});
 
-	win.loadURL(`file://${__dirname}/actionhero/public/chat.html`);
+	win.loadURL(`file://${process.env.PROJECT_ROOT}/public/chat.html`);
 	win.on('closed', onClosed);
 
 	return win;
@@ -47,3 +50,19 @@ app.on('activate', () => {
 app.on('ready', () => {
 	mainWindow = createMainWindow();
 });
+
+function extractActionhero() {
+	var ah = 'actionhero';
+	var src = path.join(app.getAppPath(), ah);
+	var dst = path.join(app.getPath('userData'), ah);
+	console.log('extracting from ' + src + ' to ' + dst);
+
+	var fs = require('fs-extra');
+	fs.emptyDirSync(dst);
+	fs.copySync(src, dst, {
+		filter: function (path) {
+			return ! path.endsWith('.gitkeep');
+		}
+	});
+	return dst;
+}
