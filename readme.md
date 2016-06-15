@@ -12,6 +12,15 @@ Here's what we have so far:
 - Edited the resource paths in `chat.html` to be relative to that file
 - Set the hostname for Actionhero server to `http://localhost:8080` in `chat.html`
 - Set the main window size to 800x600
+- Extract `actionhero` directory from installation bundle to user writable directory and boot actionhero from there
+
+Issues:
+
+- Actionhero doesn't work when using ASAR packaging for two reasons
+    - [Bug in electron](https://github.com/electron/electron/issues/5454) when actionhero lists files in an ASAR subdirectory with a trailing separator.  Example: /foo/app.asar/bar/, electron produces a listing of /foo/app.asar
+    - Actionhero loads default config first, and tries to open read-only files for writing (logs, pids, etc) even when told to use config from a different, writable location.
+
+I'm working with the Actionhero community to resolve these issues.
 
 ## Dev
 
@@ -27,9 +36,18 @@ $ npm start
 
 ### Build
 
+Package without using ASAR (works)
+
 ```
 $ npm run build
 ```
+
+Package using ASAR (broken)
+
+```
+$ npm run build-asar
+```
+
 
 Builds the app for macOS, Linux, and Windows, using [electron-packager](https://github.com/electron-userland/electron-packager).
 
