@@ -5,17 +5,8 @@ const app = electron.app;
 // adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')();
 
-// prevent window being garbage collected
-let mainWindow;
-
-var path = require('path');
-
-process.env.PROJECT_ROOT = extractActionhero();
-console.log('project root: ' + process.env.PROJECT_ROOT);
-
-var actionheroPrototype = require('actionhero').actionheroPrototype;
-var actionhero = new actionheroPrototype();
-actionhero.start({}, function(error, api) {console.log("ACTIONHERO RUNNING!")});
+// prevent window & actionhero from being garbage collected
+let mainWindow, actionhero = startActionhero();
 
 function onClosed() {
 	// dereference the window
@@ -52,6 +43,7 @@ app.on('ready', () => {
 });
 
 function extractActionhero() {
+	var path = require('path');
 	var ah = 'actionhero';
 	var src = path.join(app.getAppPath(), ah);
 	var dst = path.join(app.getPath('userData'), ah);
@@ -65,4 +57,16 @@ function extractActionhero() {
 		}
 	});
 	return dst;
+}
+
+function startActionhero() {
+	process.env.PROJECT_ROOT = extractActionhero();
+	console.log('project root: ' + process.env.PROJECT_ROOT);
+
+	var actionheroPrototype = require('actionhero').actionheroPrototype;
+	var actionhero = new actionheroPrototype();
+	actionhero.start({}, function (error, api) {
+		console.log("ACTIONHERO RUNNING!")
+	});
+	return actionhero;
 }
