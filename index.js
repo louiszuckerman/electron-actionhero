@@ -47,7 +47,7 @@ function extractActionhero() {
 	var ah = 'actionhero';
 	var src = path.join(app.getAppPath(), ah);
 	var dst = path.join(app.getPath('userData'), ah);
-	console.log('extracting from ' + src + ' to ' + dst);
+	console.log('extracting actionhero project from ' + src + ' to ' + dst);
 
 	var fs = require('fs-extra');
 	fs.emptyDirSync(dst);
@@ -61,8 +61,6 @@ function extractActionhero() {
 
 function startActionhero() {
 	process.env.PROJECT_ROOT = extractActionhero();
-	console.log('project root: ' + process.env.PROJECT_ROOT);
-
 	var actionheroPrototype = require('actionhero').actionheroPrototype;
 	var actionhero = new actionheroPrototype();
 	actionhero.start({}, function (error, api) {
