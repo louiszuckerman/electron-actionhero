@@ -14,19 +14,7 @@ Here's what we have so far:
 - Set the main window size to 800x600
 - Extract `actionhero` directory from installation bundle to user writable directory and boot actionhero from there
 
-Issues:
-
-Actionhero doesn't work when using ASAR packaging for two reasons
-- [Bug in electron](https://github.com/electron/electron/issues/5454) when actionhero lists files in an ASAR
-subdirectory with a trailing separator.  Example: /foo/app.asar/bar/, electron produces a listing of /foo/app.asar
-https://github.com/evantahler/actionhero/pull/870
-- Actionhero tries to create its log directory during config loading.  It loads its default config first, and tries
-to create a log directory there, even if that's not where the log will ultimately be written.  If Actionhero is
-installed on a read-only filesystem, like an ASAR, this causes a crash.
-https://github.com/evantahler/actionhero/pull/871
-
-I'm working with the Actionhero community to resolve these issues.
-
+We can now run from an ASAR-packaged electron app.  Thanks to the actionhero team for helping fix a couple small bugs!
 ## Dev
 
 ```
@@ -41,13 +29,13 @@ $ npm start
 
 ### Build
 
-Package without using ASAR (works)
+Package without using ASAR
 
 ```
 $ npm run build
 ```
 
-Package using ASAR (broken)
+Package using ASAR
 
 ```
 $ npm run build-asar
