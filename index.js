@@ -44,6 +44,14 @@ app.on('ready', () => {
 	});
 });
 
+function startActionhero(params, callback) {
+	process.env.PROJECT_ROOT = extractActionhero();
+	var actionheroPrototype = require('actionhero').actionheroPrototype;
+	var actionhero = new actionheroPrototype();
+	actionhero.start(params, callback);
+	return actionhero;
+}
+
 function extractActionhero() {
 	var path = require('path');
 	var ah = 'actionhero';
@@ -59,12 +67,4 @@ function extractActionhero() {
 		}
 	});
 	return dst;
-}
-
-function startActionhero(params, callback) {
-	process.env.PROJECT_ROOT = extractActionhero();
-	var actionheroPrototype = require('actionhero').actionheroPrototype;
-	var actionhero = new actionheroPrototype();
-	actionhero.start(params, callback);
-	return actionhero;
 }
