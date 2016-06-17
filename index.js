@@ -39,7 +39,7 @@ app.on('activate', () => {
 });
 
 app.on('ready', () => {
-	actionhero = startActionhero({}, function (error, api) {
+	actionhero = startActionhero({}, (error, api) => {
 		mainWindow = createMainWindow();
 	});
 });
