@@ -39,7 +39,7 @@ app.on('activate', () => {
 });
 
 app.on('ready', () => {
-	actionhero = startActionhero(function (error, api) {
+	actionhero = startActionhero({}, function (error, api) {
 		mainWindow = createMainWindow();
 	});
 });
@@ -61,10 +61,10 @@ function extractActionhero() {
 	return dst;
 }
 
-function startActionhero(callback) {
+function startActionhero(params, callback) {
 	process.env.PROJECT_ROOT = extractActionhero();
 	var actionheroPrototype = require('actionhero').actionheroPrototype;
 	var actionhero = new actionheroPrototype();
-	actionhero.start({}, callback);
+	actionhero.start(params, callback);
 	return actionhero;
 }
