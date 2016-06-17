@@ -52,6 +52,8 @@ Will expand support for Windows & Linux soon.
 
 Many thanks to the Actionhero community.  We worked together to fix a couple bugs that had prevented actionhero from running in an ASAR package.  See [release notes](https://github.com/evantahler/actionhero/releases/tag/v13.4.3) for details.
 
+Thanks also to Github for Electron and, well, for Github.
+
 ## License
 
 MIT © [Louis Zuckerman](http://github.com/semiosis)
