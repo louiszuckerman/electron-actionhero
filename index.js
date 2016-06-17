@@ -6,7 +6,7 @@ const app = electron.app;
 require('electron-debug')();
 
 // prevent window & actionhero from being garbage collected
-let mainWindow, actionhero = startActionhero();
+let mainWindow, actionhero;
 
 function onClosed() {
 	// dereference the window
@@ -27,9 +27,9 @@ function createMainWindow() {
 }
 
 app.on('window-all-closed', () => {
-	if (process.platform !== 'darwin') {
-		app.quit();
-	}
+	// if (process.platform !== 'darwin') {
+	// 	app.quit();
+	// }
 });
 
 app.on('activate', () => {
@@ -39,7 +39,9 @@ app.on('activate', () => {
 });
 
 app.on('ready', () => {
-	mainWindow = createMainWindow();
+	actionhero = startActionhero(function (error, api) {
+		mainWindow = createMainWindow();
+	});
 });
 
 function extractActionhero() {
@@ -59,12 +61,10 @@ function extractActionhero() {
 	return dst;
 }
 
-function startActionhero() {
+function startActionhero(callback) {
 	process.env.PROJECT_ROOT = extractActionhero();
 	var actionheroPrototype = require('actionhero').actionheroPrototype;
 	var actionhero = new actionheroPrototype();
-	actionhero.start({}, function (error, api) {
-		console.log("ACTIONHERO RUNNING!")
-	});
+	actionhero.start({}, callback);
 	return actionhero;
 }
