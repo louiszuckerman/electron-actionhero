@@ -50,7 +50,7 @@ Will expand support for Windows & Linux soon.
 
 ## Acknowledgements
 
-Many thanks to the Actionhero team.  We worked together to fix a couple bugs that had prevented actionhero from running in an ASAR package.  See [release notes](https://github.com/evantahler/actionhero/releases/tag/v13.4.3) for details.
+Many thanks to the Actionhero community.  We worked together to fix a couple bugs that had prevented actionhero from running in an ASAR package.  See [release notes](https://github.com/evantahler/actionhero/releases/tag/v13.4.3) for details.
 
 ## License
 
