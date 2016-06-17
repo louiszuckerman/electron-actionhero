@@ -13,7 +13,7 @@ How this project was bootstrapped:
 New code written to boot actionhero (in `/index.js`):
 
 - extractActionhero(): extracts `/actionhero` to a user-writable folder.  see [actionhero/readme.md](actionhero#actionhero-project) for details.
-- startActionhero(callback): sets PROJECT_ROOT environment variable to extracted folder then starts up actionhero, which runs callback when finished booting.
+- startActionhero(callback): sets `PROJECT_ROOT` environment variable to extracted folder then starts up actionhero, which runs callback when finished booting.
 - Hooked actionhero startup into the electron `ready` event and delayed creating the main window until after actionhero is started
 - Pointed the main window at `actionhero/public/chat.html` in the extracted folder
 
