@@ -8,12 +8,20 @@
 		var actionheroPrototype = require('actionhero').actionheroPrototype;
 		let actionhero = new actionheroPrototype();
 
-		process.env.PORT = 8081;
 		var params = {
-//			redis: remote.app.redis // doesn't seem to inject into the new actionhero.  below sorta works
+			configChanges: {
+				general: {
+					id: 'renderer'
+				},
+				servers: {
+					web: {
+						port: 8081
+					}
+				}
+
+			}
 		};
 		actionhero.start(params, (err, api) => {
-			api.redis = remote.app.redis;
 			cons.log("actionhero2!");
 		});
 
