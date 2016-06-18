@@ -6,8 +6,8 @@ const app = electron.app;
 require('electron-debug')();
 
 // prevent window & actionhero from being garbage collected
-let mainWindow, actionhero;
-
+let mainWindow, actionhero, bg;
+var redis;
 function onClosed() {
 	// dereference the window
 	// for multiple windows store them in an array
@@ -39,13 +39,21 @@ app.on('activate', () => {
 });
 
 app.on('ready', () => {
-	actionhero = startActionhero(() => {
+	process.env.PROJECT_ROOT = extractActionhero();
+	actionhero = startActionhero((err, api) => {
+		app.redis = api.redis;
+		bg = new electron.BrowserWindow({
+			width: 800,
+			height: 600,
+			x: 100,
+			y: 100
+		});
+		bg.loadURL(`file://${__dirname}/bg.html`);
 		mainWindow = createMainWindow();
-	});
+    });
 });
 
 function startActionhero(params, callback) {
-	process.env.PROJECT_ROOT = extractActionhero();
 	var actionheroPrototype = require('actionhero').actionheroPrototype;
 	var actionhero = new actionheroPrototype();
 	actionhero.start(params, callback);

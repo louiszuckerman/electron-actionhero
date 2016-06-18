@@ -1,0 +1,22 @@
+<html>
+<head>
+	<script>
+		var remote = require('electron').remote;
+		let cons = remote.getGlobal('console');
+		cons.log("Background window");
+		cons.log(process.env.PROJECT_ROOT);
+		var actionheroPrototype = require('actionhero').actionheroPrototype;
+		let actionhero = new actionheroPrototype();
+
+		process.env.PORT = 8081;
+		var params = {
+//			redis: remote.app.redis // doesn't seem to inject into the new actionhero.  below sorta works
+		};
+		actionhero.start(params, (err, api) => {
+			api.redis = remote.app.redis;
+			cons.log("actionhero2!");
+		});
+
+	</script>
+</head>
+</html>
