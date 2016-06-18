@@ -26,9 +26,10 @@
     "electron"
   ],
   "dependencies": {
-    "actionhero": "^13.4.3",
+    "actionhero": "semiosis/actionhero#electron-browserwindow",
     "electron-debug": "^1.0.0",
-    "fs-extra": "^0.30.0"
+    "fs-extra": "^0.30.0",
+    "node-resque": "semiosis/node-resque"
   },
   "devDependencies": {
     "devtron": "^1.1.0",
