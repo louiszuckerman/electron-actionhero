@@ -41,14 +41,10 @@ app.on('activate', () => {
 app.on('ready', () => {
 	process.env.PROJECT_ROOT = extractActionhero();
 	actionhero = startActionhero((err, api) => {
-		app.redis = api.redis;
-		bg = new electron.BrowserWindow({
-			width: 800,
-			height: 600,
-			x: 100,
-			y: 100
-		});
-		bg.loadURL(`file://${__dirname}/bg.html`);
+		startActionheroBackground();
+		startActionheroBackground();
+		startActionheroBackground();
+		startActionheroBackground();
 		mainWindow = createMainWindow();
     });
 });
@@ -58,6 +54,16 @@ function startActionhero(params, callback) {
 	var actionhero = new actionheroPrototype();
 	actionhero.start(params, callback);
 	return actionhero;
+}
+
+function startActionheroBackground(id) {
+	bg = new electron.BrowserWindow({
+		width: 800,
+		height: 600,
+		x: 100,
+		y: 100
+	});
+	bg.loadURL(`file://${__dirname}/bg.html`);
 }
 
 function extractActionhero() {

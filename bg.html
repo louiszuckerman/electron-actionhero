@@ -1,13 +1,16 @@
 <html>
 <head>
 	<script>
+//		var console = require('electron').remote.require('console');
+
 		var actionheroPrototype = require('actionhero').actionheroPrototype;
 		let actionhero = new actionheroPrototype();
+		var win = require('electron').remote.getCurrentWindow();
 
 		var params = {
 			configChanges: {
-				general: { id: 'renderer' },
-				servers: { web: { port: 8081 } }
+				general: { id: `renderer${win.id}` },
+				servers: { web: { port: (8080 + win.id) } }
 			}
 		};
 		actionhero.start(params);
