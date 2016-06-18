@@ -1,5 +1,18 @@
 # Electron-Actionhero
 
+## The `multithread` branch
+
+This branch spawns multiple actionheros in background browserwindows.  They all share a single fakeredis by way of
+ electron's remote module.
+
+To facilitate running in a browserwindow I had to make changes to actionhero & node-resque...
+
+- [actionhero change](https://github.com/semiosis/actionhero/commit/503d97b2324ec0fff8b1efc160158346181a6209) tests if we're in a browserwindow (electron render process) and if so, uses electron.remote.require to pull in the redis package
+- [node-resque change](https://github.com/semiosis/node-resque/commit/095b3d8b8417f5bc6aca6222c42b6b647fe84027) explicitly loads node's timers module for setInterval, so that unref() can be called on the response.  Otherwise we get a browser setInterval which doesn't do unref().
+- the `package.json` in this branch uses my forks in github for these dependencies
+
+## Resume main readme...
+
 The goal of this project is to have a desktop application built with Electron where all the real work happens in the bundled Actionhero
 
 How this project was bootstrapped:
