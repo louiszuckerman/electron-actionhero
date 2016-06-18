@@ -6,7 +6,7 @@ const app = electron.app;
 require('electron-debug')();
 
 // prevent window & actionhero from being garbage collected
-let mainWindow, actionhero, bg;
+let mainWindow, actionhero, backgrounds = [];
 var redis;
 function onClosed() {
 	// dereference the window
@@ -58,13 +58,14 @@ function startActionhero(params, callback) {
 }
 
 function startActionheroBackground(id) {
-	bg = new electron.BrowserWindow({
+	var bg = new electron.BrowserWindow({
 		width: 800,
 		height: 600,
 		x: 100,
 		y: 100
 	});
 	bg.loadURL(`file://${__dirname}/bg.html`);
+	backgrounds.push(bg);
 }
 
 function extractActionhero() {
