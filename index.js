@@ -41,6 +41,7 @@ app.on('activate', () => {
 app.on('ready', () => {
 	process.env.PROJECT_ROOT = extractActionhero();
 	actionhero = startActionhero((err, api) => {
+		// Now that main is started, lets add more in the background
 		startActionheroBackground();
 		startActionheroBackground();
 		startActionheroBackground();

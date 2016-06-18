@@ -13,7 +13,12 @@
 				servers: { web: { port: (8080 + win.id) } }
 			}
 		};
-		actionhero.start(params);
+		actionhero.start(params, (err, api) => {
+			if (win.id == 4) {
+				// Test message should be printed once for each instance of actionhero... so 5 times
+				api.redis.doCluster('api.log', ['Test']);
+			}
+		});
 	</script>
 </head>
 </html>
