@@ -1,30 +1,16 @@
 <html>
 <head>
 	<script>
-		var remote = require('electron').remote;
-		let cons = remote.getGlobal('console');
-		cons.log("Background window");
-		cons.log(process.env.PROJECT_ROOT);
 		var actionheroPrototype = require('actionhero').actionheroPrototype;
 		let actionhero = new actionheroPrototype();
 
 		var params = {
 			configChanges: {
-				general: {
-					id: 'renderer'
-				},
-				servers: {
-					web: {
-						port: 8081
-					}
-				}
-
+				general: { id: 'renderer' },
+				servers: { web: { port: 8081 } }
 			}
 		};
-		actionhero.start(params, (err, api) => {
-			cons.log("actionhero2!");
-		});
-
+		actionhero.start(params);
 	</script>
 </head>
 </html>
