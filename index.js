@@ -62,7 +62,8 @@ function startActionheroBackground(id) {
 		width: 800,
 		height: 600,
 		x: 100,
-		y: 100
+		y: 100,
+		show: false
 	});
 	bg.loadURL(`file://${__dirname}/bg.html`);
 	backgrounds.push(bg);
