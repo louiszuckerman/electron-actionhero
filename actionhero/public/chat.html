@@ -13,7 +13,7 @@
 
     var client;
     var boot = function(){
-      client = new ActionheroClient({url: 'http://localhost:8080'});
+      client = new ActionheroClient({url: 'http://localhost:' + (window.location.port || 8080)});
 
       client.on('connected',    function(){ console.log('connected!') })
       client.on('disconnected', function(){ console.log('disconnected :(') })

@@ -57,7 +57,7 @@ function startActionhero(params, callback) {
 	return actionhero;
 }
 
-function startActionheroBackground(id) {
+function startActionheroBackground() {
 	var bg = new electron.BrowserWindow({
 		width: 800,
 		height: 600,
