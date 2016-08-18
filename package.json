@@ -4,12 +4,11 @@
   "version": "0.0.1",
   "description": "Bundling Actionhero with Electron",
   "license": "MIT",
-  "repository": "semiosis/electron-actionhero",
-  "author": {
-    "name": "Louis Zuckerman",
-    "email": "code@louiszuckerman.com",
-    "url": "http://github.com/semiosis"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/semiosis/electron-actionhero.git"
   },
+  "author": "Louis Zuckerman <code@louiszuckerman.com> (http://github.com/semiosis)",
   "scripts": {
     "test": "xo",
     "start": "electron .",
@@ -26,10 +25,10 @@
     "electron"
   ],
   "dependencies": {
-    "actionhero": "semiosis/actionhero#electron-browserwindow",
+    "actionhero": "^15.0.2",
     "electron-debug": "^1.0.0",
     "fs-extra": "^0.30.0",
-    "node-resque": "semiosis/node-resque"
+    "node-resque": "github:semiosis/node-resque"
   },
   "devDependencies": {
     "devtron": "^1.1.0",
@@ -43,5 +42,10 @@
       "node",
       "browser"
     ]
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/semiosis/electron-actionhero/issues"
+  },
+  "homepage": "https://github.com/semiosis/electron-actionhero#readme",
+  "main": "index.js"
 }
