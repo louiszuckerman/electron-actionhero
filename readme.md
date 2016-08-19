@@ -5,11 +5,6 @@
 This branch spawns multiple actionheros in background browserwindows.  They all share a single fakeredis by way of
  electron's remote module.
 
-To facilitate running in a browserwindow I had to make a change to node-resque...
-
-- [node-resque change](https://github.com/semiosis/node-resque/commit/a7bf64c1f549d2455af909fc91c175e519598c71) explicitly loads node's timers module for setInterval, so that unref() can be called on the response.  Otherwise we get a browser setInterval which doesn't do unref().
-- the `package.json` in this branch uses my fork in github
-
 To see the multiple processes working together, open a browser to http://localhost:8081-4.  These additional ports are served by the background processes.  You can send messages between the browser & application window because they all share a common fakeredis.
 
 ## Resume main readme...
