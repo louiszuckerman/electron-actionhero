@@ -5,7 +5,7 @@
 This branch spawns multiple actionheros in background browserwindows.  They all share a single fakeredis by way of
  electron's remote module.
 
-To see the multiple processes working together, open a browser to http://localhost:8081-4.  These additional ports are served by the background processes.  You can send messages between the browser & application window because they all share a common fakeredis.
+To see the multiple processes working together, open a browser to `http://localhost:808[1-4]/chat.html`.  These additional ports are served by the background processes.  You can send messages between the browser & application window because they all share a common fakeredis.
 
 ## Resume main readme...
 
