@@ -12,10 +12,6 @@
 			}
 		};
 		actionhero.start(params, (err, api) => {
-			if (win.id == 4) {
-				// Test message should be printed once for each instance of actionhero... so 5 times
-				api.redis.doCluster('api.log', ['Test']);
-			}
 		});
 	</script>
 </head>

@@ -1,4 +1,6 @@
 'use strict';
+const NUM_BACKGROUND_PROCS = 4;
+
 const electron = require('electron');
 const app = electron.app;
 
@@ -7,7 +9,6 @@ require('electron-debug')();
 
 // prevent window & actionhero from being garbage collected
 let mainWindow, actionhero, backgrounds = [];
-var redis;
 function onClosed() {
 	// dereference the window
 	// for multiple windows store them in an array
@@ -42,10 +43,9 @@ app.on('ready', () => {
 	process.env.PROJECT_ROOT = extractActionhero();
 	actionhero = startActionhero((err, api) => {
 		// Now that main is started, lets add more in the background
-		startActionheroBackground();
-		startActionheroBackground();
-		startActionheroBackground();
-		startActionheroBackground();
+		for (var i = 0; i < NUM_BACKGROUND_PROCS; i++) {
+			startActionheroBackground();
+		}
 		mainWindow = createMainWindow();
     });
 });
