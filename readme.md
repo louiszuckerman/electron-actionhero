@@ -1,15 +1,13 @@
 # Electron-Actionhero
 
-## The `multithread` branch
+The goal of this project is to have a desktop application built with Electron where all the real work happens in the bundled Actionhero.
 
-This branch spawns multiple actionheros in background browserwindows.  They all share a single fakeredis by way of
- electron's remote module.
+This project supports a multiprocess architecture with multiple actionheros running in background browserwindows.  They all share a single fakeredis by way of
+ electron's remote module.  To disable the background processes set NUM_BACKGROUND_PROCS to 0 in index.js.
 
 To see the multiple processes working together, open a browser to `http://localhost:808[1-4]/chat.html`.  These additional ports are served by the background processes.  You can send messages between the browser & application window because they all share a common fakeredis.
 
-## Resume main readme...
-
-The goal of this project is to have a desktop application built with Electron where all the real work happens in the bundled Actionhero
+## Background info
 
 How this project was bootstrapped:
 
