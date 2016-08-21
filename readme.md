@@ -9,6 +9,12 @@ To see the multiple processes working together, open a browser to `http://localh
 
 ## Background info
 
+Notable files:
+
+- `index.js`: set up application and start main process
+- `bg.html`: main entry point for the background worker processes
+- `actionhero/config/redis.js`: manage fakeredis module via electron remote
+
 How this project was bootstrapped:
 
 - Started with [electron-boilerplate](https://github.com/sindresorhus/electron-boilerplate)
@@ -19,7 +25,7 @@ How this project was bootstrapped:
 
 New code written to boot actionhero (in `/index.js`):
 
-- `extractActionhero()`: extracts `/actionhero` to a user-writable folder.  see [actionhero/readme.md](actionhero#actionhero-project) for details.
+- `extractActionhero()`: extracts `/actionhero` to a [user-writable appData folder](https://github.com/electron/electron/blob/master/docs/api/app.md#appgetpathname).  see [actionhero/readme.md](actionhero#actionhero-project) for details.
 - `startActionhero(callback)`: sets `PROJECT_ROOT` environment variable to extracted folder then starts up actionhero, which runs `callback` when finished booting.
 - Hooked actionhero startup into the electron `ready` event and delayed creating the main window until after actionhero is started
 - Pointed the main window at `actionhero/public/chat.html` in the extracted folder
