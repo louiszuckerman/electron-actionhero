@@ -72,8 +72,10 @@ function startActionheroBackground() {
 function extractActionhero() {
 	var path = require('path');
 	var ah = 'actionhero';
-	var src = path.join(app.getAppPath(), ah);
-	var dst = path.join(app.getPath('userData'), ah);
+	let appPath = app.getAppPath();
+	var src = path.join(appPath, ah);
+	let userData = app.getPath('userData');
+	var dst = path.join(userData, ah);
 	console.log('extracting actionhero project from ' + src + ' to ' + dst);
 
 	var fs = require('fs-extra');
@@ -83,5 +85,10 @@ function extractActionhero() {
 			return ! path.endsWith('.gitkeep');
 		}
 	});
+
+	var nodefs = require('fs');
+	let nodeModules = 'node_modules';
+	nodefs.symlinkSync(path.join(appPath, nodeModules), path.join(dst, nodeModules));
+
 	return dst;
 }

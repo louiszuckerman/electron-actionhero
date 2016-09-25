@@ -1,8 +1,10 @@
 exports['default'] = {
   tasks: function(api){
+		var isRenderer = require('is-electron-renderer');
+		var processors = (isRenderer ? 1 : 0);
     return {
       // Should this node run a scheduler to promote delayed tasks?
-      scheduler: false,
+      scheduler: true,
       // what queues should the taskProcessors work?
       queues: ['*'],
       // Logging levels of task workers
@@ -29,12 +31,12 @@ exports['default'] = {
         transferred_job   : 'debug'
       },
       // how long to sleep between jobs / scheduler checks
-      timeout: 5000,
+      timeout: 1000,
       // at minimum, how many parallel taskProcessors should this node spawn?
       // (have number > 0 to enable, and < 1 to disable)
-      minTaskProcessors: 0,
+      minTaskProcessors: processors,
       // at maximum, how many parallel taskProcessors should this node spawn?
-      maxTaskProcessors: 0,
+      maxTaskProcessors: processors,
       // how often should we check the event loop to spawn more taskProcessors?
       checkTimeout: 500,
       // how many ms would constitue an event loop delay to halt taskProcessors spawning?

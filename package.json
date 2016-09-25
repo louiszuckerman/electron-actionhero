@@ -28,6 +28,7 @@
     "actionhero": "^15.0.3",
     "electron-debug": "^1.0.1",
     "fs-extra": "^0.30.0",
+    "is-electron-renderer": "^2.0.1",
     "node-resque": "^3.0.4"
   },
   "devDependencies": {
