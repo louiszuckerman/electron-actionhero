@@ -4,7 +4,7 @@ exports['default'] = {
 		var processors = (isRenderer ? 1 : 0);
     return {
       // Should this node run a scheduler to promote delayed tasks?
-      scheduler: true,
+      scheduler: !isRenderer,
       // what queues should the taskProcessors work?
       queues: ['*'],
       // Logging levels of task workers
