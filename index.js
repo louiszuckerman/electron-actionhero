@@ -3,6 +3,10 @@ const NUM_BACKGROUND_PROCS = 4;
 
 const electron = require('electron');
 const app = electron.app;
+const path = require('path');
+const appPath = app.getAppPath();
+const appNodeModules = path.join(appPath, 'node_modules');
+require('app-module-path').addPath(appNodeModules);
 
 // adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')();
@@ -70,25 +74,19 @@ function startActionheroBackground() {
 }
 
 function extractActionhero() {
-	var path = require('path');
-	var ah = 'actionhero';
-	let appPath = app.getAppPath();
-	var src = path.join(appPath, ah);
-	let userData = app.getPath('userData');
-	var dst = path.join(userData, ah);
+	const ah = 'actionhero';
+	const src = path.join(appPath, ah);
+	const userData = app.getPath('userData');
+	const dst = path.join(userData, ah);
 	console.log('extracting actionhero project from ' + src + ' to ' + dst);
 
-	var fs = require('fs-extra');
+	const fs = require('fs-extra');
 	fs.emptyDirSync(dst);
 	fs.copySync(src, dst, {
 		filter: function (path) {
 			return ! path.endsWith('.gitkeep');
 		}
 	});
-
-	var nodefs = require('fs');
-	let nodeModules = 'node_modules';
-	nodefs.symlinkSync(path.join(appPath, nodeModules), path.join(dst, nodeModules));
 
 	return dst;
 }

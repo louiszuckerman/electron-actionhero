@@ -1,9 +1,16 @@
 <html>
 <head>
 	<script>
-		var actionheroPrototype = require('actionhero').actionheroPrototype;
-		let actionhero = new actionheroPrototype();
-		var win = require('electron').remote.getCurrentWindow();
+		const electron = require('electron');
+		const app = electron.remote.app;
+		const appPath = app.getAppPath();
+		const path = require('path');
+		const appNodeModules = path.join(appPath, 'node_modules');
+		require('app-module-path').addPath(appNodeModules);
+
+		const actionheroPrototype = require('actionhero').actionheroPrototype;
+		const actionhero = new actionheroPrototype();
+		const win = electron.remote.getCurrentWindow();
 
 		var params = {
 			configChanges: {

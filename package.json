@@ -26,6 +26,7 @@
   ],
   "dependencies": {
     "actionhero": "^15.0.3",
+    "app-module-path": "^2.0.0",
     "electron-debug": "^1.0.1",
     "fs-extra": "^0.30.0",
     "is-electron-renderer": "^2.0.1",
