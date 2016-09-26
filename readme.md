@@ -5,7 +5,9 @@ The goal of this project is to have a desktop application built with Electron wh
 This project supports a multiprocess architecture with multiple actionheros running in background browserwindows.  They all share a single fakeredis by way of
  electron's remote module.  To disable the background processes set NUM_BACKGROUND_PROCS to 0 in index.js.
 
-To see the multiple processes working together, open a browser to `http://localhost:808[1-4]/chat.html`.  These additional ports are served by the background processes.  You can send messages between the browser & application window because they all share a common fakeredis.
+To demonstrate the multiprocess architecture I have created a task in `actionhero/tasks/check.js` which runs about every second.
+The task scheduler is running in the electron main process actionhero instance.  It queues the task for running every second.
+Background workers are watching the queue to execute the tasks.  Watch the logs to see the background workers collaborating to run tasks from the queue.
 
 ## Background info
 

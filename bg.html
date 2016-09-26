@@ -15,7 +15,10 @@
 		var params = {
 			configChanges: {
 				general: { id: `renderer${win.id}` },
-				servers: { web: { port: (8080 + win.id) } }
+				servers: {
+					web: { enabled: false },
+					websocket: { enabled: false}
+				}
 			}
 		};
 		actionhero.start(params, (err, api) => {
