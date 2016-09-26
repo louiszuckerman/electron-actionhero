@@ -2,6 +2,7 @@ var host     = process.env.REDIS_HOST || '127.0.0.1';
 var port     = process.env.REDIS_PORT || 6379;
 var db       = process.env.REDIS_DB   || 0;
 var password = process.env.REDIS_PASS || null;
+var maxBackoff = 1000;
 
 exports['default'] = {
   redis: function(api){
@@ -42,33 +43,32 @@ exports['default'] = {
 
     }else{
     	// This is where the magic happens.  Sharing a fakeredis instance between mulitple processes...
-		var fakeredis;
-		if (require('is-electron-renderer')) {
-			// Electron Render (background) process
-			fakeredis = require('electron').remote.require('fakeredis');
-		} else {
-			// Electron Main process
-			fakeredis = require('fakeredis');
-		}
-		return {
-			'_toExpand': false,
-			client: {
-				konstructor: fakeredis.createClient,
-				args: [port, host, {fast: true}],
-				buildNew: false
-			},
-			subscriber: {
-				konstructor: fakeredis.createClient,
-				args: [port, host, {fast: true}],
-				buildNew: false
-			},
-			tasks: {
-				konstructor: fakeredis.createClient,
-				args: [port, host, {fast: true}],
-				buildNew: false
+			let fakeredis;
+			if (require('is-electron-renderer')) {
+				// Electron Render (background) process
+				fakeredis = require('electron').remote.require('fakeredis');
+			} else {
+				// Electron Main process
+				fakeredis = require('fakeredis');
 			}
-		};
-
+			return {
+				'_toExpand': false,
+				client: {
+					konstructor: fakeredis.createClient,
+					args: [port, host, {fast: true}],
+					buildNew: false
+				},
+				subscriber: {
+					konstructor: fakeredis.createClient,
+					args: [port, host, {fast: true}],
+					buildNew: false
+				},
+				tasks: {
+					konstructor: fakeredis.createClient,
+					args: [port, host, {fast: true}],
+					buildNew: false
+				}
+			};
     }
   }
 };
