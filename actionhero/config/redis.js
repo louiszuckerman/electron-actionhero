@@ -42,36 +42,32 @@ exports['default'] = {
 
     }else{
     	// This is where the magic happens.  Sharing a fakeredis instance between mulitple processes...
-			var electron = require('electron');
-			var path = require('path');
-			var fakeredis;
-			if (process.type === 'renderer') {
-				// Electron Render (background) process
-				var fakeredis_path = path.join(electron.remote.app.getAppPath(), 'node_modules', 'fakeredis');
-				fakeredis = electron.remote.require(fakeredis_path);
-			} else {
-				// Electron Main process
-				var fakeredis_path = path.join(electron.app.getAppPath(), 'node_modules', 'fakeredis');
-				fakeredis = require(fakeredis_path);
+		var fakeredis;
+		if (require('is-electron-renderer')) {
+			// Electron Render (background) process
+			fakeredis = require('electron').remote.require('fakeredis');
+		} else {
+			// Electron Main process
+			fakeredis = require('fakeredis');
+		}
+		return {
+			'_toExpand': false,
+			client: {
+				konstructor: fakeredis.createClient,
+				args: [port, host, {fast: true}],
+				buildNew: false
+			},
+			subscriber: {
+				konstructor: fakeredis.createClient,
+				args: [port, host, {fast: true}],
+				buildNew: false
+			},
+			tasks: {
+				konstructor: fakeredis.createClient,
+				args: [port, host, {fast: true}],
+				buildNew: false
 			}
-			return {
-				'_toExpand': false,
-				client: {
-					konstructor: fakeredis.createClient,
-					args: [port, host, {fast: true}],
-					buildNew: false
-				},
-				subscriber: {
-					konstructor: fakeredis.createClient,
-					args: [port, host, {fast: true}],
-					buildNew: false
-				},
-				tasks: {
-					konstructor: fakeredis.createClient,
-					args: [port, host, {fast: true}],
-					buildNew: false
-				}
-			};
+		};
 
     }
   }
